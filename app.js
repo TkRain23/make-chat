@@ -18,6 +18,9 @@ io.on('connection', (socket) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// establish public folder
+app.use('/public', express.static('public'));
+
 app.get('/', (req, res) => {
   res.render('index');
 });
