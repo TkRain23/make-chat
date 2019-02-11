@@ -7,15 +7,13 @@ const path = require('path');
 // socket.io has to use the http server
 const server = require('http').Server(app);
 
-// socket.io
 const io = require('socket.io')(server);
-
-io.on('connection', (socket) => {
-  // Do something when a new socket(client) connection is formed
-  console.log('🔌 New user connected! 🔌');
-  // This file will be read on new socket connections
-  require('./sockets/chat.js')(io, socket);
-});
+//We'll store our online users here
+let onlineUsers = {};
+io.on("connection", (socket) => {
+  // Make sure to send the users to our chat file
+  require('./sockets/chat.js')(io, socket, onlineUsers);
+})
 
 // express view engine for pug
 app.set('views', path.join(__dirname, 'views'));
