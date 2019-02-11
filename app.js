@@ -13,6 +13,8 @@ const io = require('socket.io')(server);
 io.on('connection', (socket) => {
   // Do something when a new socket(client) connection is formed
   console.log('🔌 New user connected! 🔌');
+  // This file will be read on new socket connections
+  require('./sockets/chat.js')(io, socket);
 });
 
 // express view engine for pug
