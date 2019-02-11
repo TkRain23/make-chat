@@ -11,6 +11,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
+  // Do something when a new socket(client) connection is formed
   console.log('🔌 New user connected! 🔌');
 });
 
